@@ -14,7 +14,7 @@ import           XMonad.Hooks.ManageHelpers (composeOne, doCenterFloat,
                                              doHideIgnore, isDialog, (-?>))
 import           XMonad.Layout.Circle
 import           XMonad.Layout.MultiColumns (multiCol)
-import           XMonad.Layout.NoBorders    (noBorders)
+import           XMonad.Layout.NoBorders
 import           XMonad.Layout.ThreeColumns
 import           XMonad.Prompt
 import           XMonad.Prompt.Man          (manPrompt)
@@ -24,7 +24,7 @@ import           XMonad.Prompt.Workspace    (workspacePrompt)
 import           XMonad.Util.EZConfig       (additionalKeysP)
 import           XMonad.Util.SpawnOnce
 
-myTerminal = "gnome-terminal"
+myTerminal = "termite"
 emacsDaemon = "emacs --daemon &"
 background = "~/.fehbg &"
 locker = "light-locker &"
@@ -57,8 +57,8 @@ borderlessCircle = noBorders (Circle)
 
 myCustomKeys = [ ("M-<F1>", spawn "light-locker-command -l")
                , ("M-<F2>", spawn "emacsclient -c")
-               --, ("M-<F3>", spawn "qutebrowser")
-               , ("M-<F3>", spawn "bash ~/qutebrowser")
+               , ("M-<F3>", spawn "qutebrowser")
+               --, ("M-<F3>", spawn "bash ~/qutebrowser")
                , ("M-<F4>", spawn "networkmanager_dmenu")
                , ("M-<F7>", spawn "gnome-screenshot -a")
                , ("M-<F6>", spawn "gnome-screenshot -w")
@@ -68,6 +68,7 @@ myCustomKeys = [ ("M-<F1>", spawn "light-locker-command -l")
                , ("M-<KP_Add>", spawn "bash ~/.local/bin/reduce-brightness.sh -u")
                , ("M-p", spawn "rofi -show drun")
                , ("M-S-p", spawn "rofi -show drun")
+               , ("M-o", spawn "rofi-pass")
                , ("M-<Tab>", wsWindowSwitchPrompt)
                , ("M-S-<Tab>", windowSwitchPrompt)
                , (mod_b "g", searchPrompt google)
@@ -148,7 +149,7 @@ main = (bar (ewmh $ def
               { terminal 		= myTerminal
               , modMask 		= mod4Mask
               , manageHook 	= myManageHook
-              , layoutHook 	= myLayoutHooks
+              , layoutHook 	= noBorders $ myLayoutHooks
               , startupHook 	= myStartup
               } `additionalKeysP` myCustomKeys
             )) >>= xmonad

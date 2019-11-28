@@ -32,7 +32,7 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(html
      typescript
      php
      themes-megapack
@@ -194,7 +194,7 @@ It should only modify the values of Spacemacs settings."
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
    ;; Possible values for list-type are:
-   ;; `recents' `bookmarks' `projects' `agenda' `todos'.
+   ;; `recents' `bookmarks' `projects' `agenda' `todos'
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
    dotspacemacs-startup-lists '((recents . 5)
@@ -539,6 +539,7 @@ you should place your code here."
   (global-company-mode)
   (global-flycheck-mode)
   (setq company-idle-delay 0)
+  (setq TeX-PDF-mode t)
   (setq TeX-view-program-selection '((output-pdf "Zathura")))
 
   (require 'company-ghci)
